@@ -19,12 +19,19 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => "Nom d'utilisateur"
+                'label' => "Nom d'utilisateur",
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les champs de mot de passe doivent correspondre.',
-                'options' => ['attr' => ['autocomplete' => 'new-password']],
+                'options' => ['attr' => [
+                        'autocomplete' => 'new-password',
+                        'class' => 'form-control'
+                    ]
+                ],
                 'mapped' => false,
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
@@ -42,7 +49,10 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email'
+                'label' => 'Adresse email',
+                'attr' => [
+                    'class' => 'form-control'
+                ]
             ])
         ;
     }
