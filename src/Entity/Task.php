@@ -20,11 +20,15 @@ class Task
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: "datetime_immutable", options:["default" => "CURRENT_TIMESTAMP"])]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: "boolean", options: ['default' => false])]
     private ?bool $isDone = null;
+
+    #[ORM\ManyToOne(inversedBy: 'task')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -75,6 +79,18 @@ class Task
     public function setIsDone(bool $isDone): static
     {
         $this->isDone = $isDone;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
