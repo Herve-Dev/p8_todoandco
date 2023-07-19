@@ -4,12 +4,13 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -54,6 +55,21 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+            ->add('roles', ChoiceType::class, [
+                'label' => 'Rôles :',
+                'label_attr' => [
+                    'class' => 'form-check-label',
+                ],
+                'multiple' => true,
+                'expanded' => false, // Remplacez par "true" si vous souhaitez un select étendu
+                'choices' => [
+                    'Utilisateur' => 'ROLE_USER',
+                    'Administrateur' => 'ROLE_ADMIN',
+                ],
+                'attr' => [
+                    'class' => 'form-select' // Utilisez "form-control" si vous utilisez Bootstrap
+                ]
+            ]);
         ;
     }
 
