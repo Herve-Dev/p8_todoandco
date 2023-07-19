@@ -14,7 +14,7 @@ class TaskController extends AbstractController
     {
         $tasks = $taskRepository->findAll();
 
-        return $this->render('task/index.html.twig', [
+        return $this->render('task/list.html.twig', [
             'controller_name' => 'TaskController',
             'tasks' => $tasks
         ]);
