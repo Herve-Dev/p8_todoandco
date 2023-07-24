@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <div class="d-flex justify-content-between">
+                <a href="{{ path('task_list') }}" class="btn btn-primary mt-3">Retour à la liste des tâches</a>
+                <button type="submit" class="btn btn-success mt-3">Ajouter</button>
+            </div>
+        {{ form_end(form) }}
+ 
+    </div>
+{% endblock %}

@@ -71,7 +71,7 @@ class Task
         return $this;
     }
 
-    public function isIsDone(): ?bool
+    public function isDone(): ?bool
     {
         return $this->isDone;
     }
@@ -93,5 +93,10 @@ class Task
         $this->user = $user;
 
         return $this;
+    }
+
+    public function toggle($flag)
+    {
+        $this->isDone = $flag;
     }
 }
