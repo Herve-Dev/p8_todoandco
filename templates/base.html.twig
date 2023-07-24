@@ -21,15 +21,15 @@
         {% include "_partials/_nav.html.twig" %}
 
         <div class="container">
-            <div>
-                <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
-
+            <div class="d-flex justify-content-between">
                 {% if app.user %}
-                <a href="{{ path('logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
-                {% endif %}
-
-                {% if not app.user and 'login' != app.request.attributes.get('_route') %}
-                <a href="{{ path('login') }}" class="btn btn-success">Se connecter</a>
+                    <a href="{{ path('homepage') }}" class="btn btn-primary mb-3">Acceuil</a>
+                    <a href="{{ path('logout') }}" class="pull-right btn btn-danger mb-3">Se déconnecter</a>
+                {% else %}
+                    <a href="{{ path('user_create') }}" class="btn btn-primary mb-3">Créer un utilisateur</a>
+                    {% if 'login' != app.request.attributes.get('_route') %}
+                        <a href="{{ path('login') }}" class="btn btn-success mb-3">Se connecter</a>
+                    {% endif %}
                 {% endif %}
             </div>
 
