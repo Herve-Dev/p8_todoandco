@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Task;
+use App\Entity\User;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -105,5 +106,20 @@ class TaskController extends AbstractController
         $this->addFlash('success', 'La tâche a bien été supprimée.');
 
         return $this->redirectToRoute('task_list');
+    }
+
+    #[Route("/tasks/finish", name: 'task_finish')]
+    public function finishTasks()
+    {
+        $userTask = $this->getUser();
+
+        $doneTasks = array_filter($userTask->getTask()->toArray(), function ($task) {
+            return $task->isDone();
+        });
+
+        return $this->render('task/finish.html.twig', [
+            'doneTasks' => $doneTasks,
+        ]);
+
     }
 }

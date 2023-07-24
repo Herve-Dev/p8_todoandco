@@ -55,21 +55,6 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('roles', ChoiceType::class, [
-                'label' => 'Rôles :',
-                'label_attr' => [
-                    'class' => 'form-check-label',
-                ],
-                'multiple' => true,
-                'expanded' => false, // Remplacez par "true" si vous souhaitez un select étendu
-                'choices' => [
-                    'Utilisateur' => 'ROLE_USER',
-                    'Administrateur' => 'ROLE_ADMIN',
-                ],
-                'attr' => [
-                    'class' => 'form-select' // Utilisez "form-control" si vous utilisez Bootstrap
-                ]
-            ]);
         ;
     }
 
