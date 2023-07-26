@@ -68,7 +68,8 @@ class RegistrationFormType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-select' // Utilisez "form-control" si vous utilisez Bootstrap
-                ]
+                ],
+                
             ]);
         ;
     }
