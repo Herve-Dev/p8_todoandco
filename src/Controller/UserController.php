@@ -23,8 +23,9 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/users/{id}/edit', name: 'user_edit')]
-    public function editAction(User $user, 
+    #[Route('/user/{id}/edit', name: 'user_edit')]
+    public function editAction(
+        User $user, 
         Request $request, 
         EntityManagerInterface $em) : Response
     {

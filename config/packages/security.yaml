@@ -33,6 +33,7 @@ security:
     access_control:
         - { path: ^/login, role: PUBLIC_ACCESS }
         - { path: ^/users/create, role: PUBLIC_ACCESS }
+        - { path: '^/user/{id}/edit', roles: [ROLE_ADMIN, ROLE_USER] }
         - { path: ^/users, roles: ROLE_ADMIN }
         - { path: ^/, roles: [ROLE_ADMIN, ROLE_USER] }
         # - { path: ^/profile, roles: ROLE_USER }
