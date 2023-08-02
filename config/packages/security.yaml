@@ -39,7 +39,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:
-        ROLE_SUPER_ADMIN: [ROLE_ANONYMOUS]
+        ROLE_ANONYMOUS: ROLE_USER 
 
 when@test:
     security:

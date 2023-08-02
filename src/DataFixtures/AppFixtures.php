@@ -44,17 +44,15 @@ class AppFixtures extends Fixture
         }
 
         //anonymes users
-        $anonymousUsers = [];
-        for ($i=1; $i <= 3 ; $i++) { 
-            $anonymousUser = new User();
-            $anonymousUser
-                ->setUsername("anonymous $i")
-                ->setEmail("anonymous $i")
-                ->setPassword($this->passwordEncoder->hashPassword($anonymousUser, 'Password123'))
-                ->setRoles(['ROLE_ANONYMOUS']);
-            $manager->persist($anonymousUser);
-            $anonymousUsers[] = $anonymousUser;
-        }
+        $anonymousUser = new User();
+        $anonymousUser
+            ->setUsername("user [deleted]")
+            ->setEmail("email [deleted]")
+            ->setPassword($this->passwordEncoder->hashPassword($anonymousUser, 'Password123'))
+            ->setRoles(['ROLE_ANONYMOUS']);
+        $manager->persist($anonymousUser);
+        
+        
 
         // Tâches pour utilisateurs
         foreach ($users as $user) {
@@ -83,19 +81,16 @@ class AppFixtures extends Fixture
         }
 
         // Tâches pour anonymeUsers
-        foreach ($anonymousUsers as $anonymousUser) {
-            for ($i = 1; $i <= 5; $i++) {
-                $task = new Task();
-                $task
-                    ->setTitle("Tâche pour $i utilisateur " . $anonymousUser->getUsername())
-                    ->setContent("Contenu de la tâche $i pour utilisateur " . $anonymousUser->getUsername())
-                    ->setCreatedAt(new \DateTimeImmutable())
-                    ->setIsDone(false)
-                    ->setUser($admin);
-                $manager->persist($task);
-            }
+        for ($i = 1; $i <= 5; $i++) {
+            $task = new Task();
+            $task
+                ->setTitle("Tâche $i pour " . $anonymousUser->getUsername())
+                ->setContent("Contenu de la tâche $i pour " . $anonymousUser->getUsername())
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setIsDone(false)
+                ->setUser($anonymousUser);
+            $manager->persist($task);
         }
-        
 
         $manager->flush();
     }
