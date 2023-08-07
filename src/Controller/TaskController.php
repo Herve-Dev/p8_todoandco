@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Task;
-use App\Entity\User;
 use App\Form\TaskType;
-use App\Repository\TaskRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +16,10 @@ use function Symfony\Component\Clock\now;
 class TaskController extends AbstractController
 {
     #[Route('/tasks', name: 'task_list')]
-    public function listAction(TaskRepository $taskRepository): Response
+    public function listAction(): Response
     {
         $userConnected = $this->getUser();
-        $tasks = $taskRepository->findBy(['user' => $userConnected]);
+        $tasks = $userConnected->getTask();
 
         return $this->render('task/list.html.twig', [
             'controller_name' => 'TaskController',
@@ -121,6 +120,18 @@ class TaskController extends AbstractController
         return $this->render('task/finish.html.twig', [
             'doneTasks' => $doneTasks,
         ]);
+    }
 
+    #[Route("/tasks/anonymes", name: 'task_anonymes')]
+    public function listTaskAnonymous(UserRepository $userRepository): Response
+    {
+
+        $searchUser = 'user [deleted]';
+        $user = $userRepository->findOneByUsername($searchUser);
+        $tasks = $user->getTask();
+        
+        return $this->render('task/list_anonymes.html.twig', [
+            'tasks' => $tasks
+        ]);
     }
 }

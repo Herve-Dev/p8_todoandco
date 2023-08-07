@@ -24,7 +24,6 @@
             <div class="d-flex justify-content-between">
                 {% if app.user %}
                     {% set userId = app.user.id %}
-
                     <a href="{{ path('homepage') }}" class="btn btn-primary mb-3">Acceuil</a>
                     <div>
                         <a href="{{ path('user_edit', { 'id': userId }) }}" class="pull-right btn btn-info mb-3">Modifier mon profil </a>
