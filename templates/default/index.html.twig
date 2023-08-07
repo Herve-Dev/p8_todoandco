@@ -12,6 +12,7 @@
 
     {% if app.user and 'ROLE_ADMIN' in app.user.roles %}
         <a href="{{ path('user_list') }}" class="btn btn-info">Consulter les utilisateurs inscrit</a>
+        <a href="{{ path('task_anonymes') }}" class="btn btn-info">Gestion des tâches</a>
     {% endif %}
     
 {% endblock %}
