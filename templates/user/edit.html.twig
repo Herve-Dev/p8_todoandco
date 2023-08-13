@@ -7,15 +7,23 @@
     <div class="row">
         {{ form_errors(form) }}
 
-        {{ form_start(form) }}
-            {{ form_row(form.username) }}
-            {{ form_row(form.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(form.roles) }}
-            {{ form_row(form.email) }}
+        {{ form_start(form, {'attr': {'class': 'row'}}) }}
 
-            <button type="submit" class="btn btn-success">Register</button>
+            {% if not 'ROLE_ADMIN' in app.user.roles %}
+                {{ form_row(form.username) }}
+                {{ form_row(form.plainPassword, {
+                    label: 'Password'
+                }) }}
+                {{ form_row(form.roles) }}
+                {{ form_row(form.email) }}
+            {% endif %}
+
+            <div class="col order-1 mt-2">
+                <button type="submit" class="btn btn-success ">Register</button>
+            </div>
+            
+
         {{ form_end(form) }}
+        
     </div>
 {% endblock %}

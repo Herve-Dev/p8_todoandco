@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditRoleFormType;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,9 +28,16 @@ class UserController extends AbstractController
     public function editAction(
         User $user, 
         Request $request, 
-        EntityManagerInterface $em) : Response
+        EntityManagerInterface $em,
+        int $id) : Response
     {
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $userAdmin = $this->getUser();
+
+        if (in_array('ROLE_ADMIN', $userAdmin->getRoles()) && $userAdmin->getId() !== $id) {
+            $form = $this->createForm(EditRoleFormType::class, $user);
+        } else {
+            $form = $this->createForm(RegistrationFormType::class, $user);
+        }
 
         $form->handleRequest($request);
 
@@ -48,6 +56,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(), 
+            'user' => $user,
+        ]);
     }
 }
