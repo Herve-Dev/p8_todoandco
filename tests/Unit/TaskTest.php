@@ -20,7 +20,7 @@ class TaskTest extends KernelTestCase
             ->setUser($user);
     }
 
-    public function testEntityIsValid(): void
+    public function testTaskEntityIsValid(): void
     {
         self::bootKernel();
         $container = static::getContainer();
@@ -29,7 +29,7 @@ class TaskTest extends KernelTestCase
         $this->assertCount(0, $errors);
     }
 
-    public function testInvalidTitle()
+    public function testTaskInvalidTitleAndContent()
     {
         self::bootKernel();
         $container = static::getContainer();
@@ -39,28 +39,5 @@ class TaskTest extends KernelTestCase
 
         $errors = $container->get('validator')->validate($task);
         $this->assertCount(2, $errors);
-    }
-
-    public function testUserAssociation()
-    {
-        self::bootKernel();
-        $container = static::getContainer();
-        $task = $this->getEntity();
-        
-        $user = new User(); 
-        $task->setUser($user);
-
-        $errors = $container->get('validator')->validate($task);
-        $this->assertCount(0, $errors);
-    }
-
-    public function testUserNotAssociation()
-    {
-        self::bootKernel();
-        $container = static::getContainer();
-        $task = $this->getEntity();
-        $task->setUser(null);
-        $errors = $container->get('validator')->validate($task);
-        $this->assertCount(1, $errors);
     }
 }

@@ -31,7 +31,6 @@ class Task
 
     #[ORM\ManyToOne(inversedBy: 'task')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank()]
     private ?User $user = null;
 
     public function getId(): ?int

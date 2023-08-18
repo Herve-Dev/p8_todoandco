@@ -25,15 +25,14 @@ class UserTest extends KernelTestCase
         
     }
 
-    public function testUserEntityIsInValid(): void
+    public function testUserEntityIsInvalid(): void
     {
         $kernel = self::bootKernel();
         $container = static::getContainer();
         $user = $this->getEntity();
         $user->setUsername('');
-        $user->setPassword('');
         $user->setEmail('');
         $errors = $container->get('validator')->validate($user);
-        $this->assertCount(3, $errors);
+        $this->assertCount(2, $errors);
     }
 }

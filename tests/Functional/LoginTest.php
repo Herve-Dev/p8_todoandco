@@ -16,7 +16,7 @@ class LoginTest extends WebTestCase
 
         //Form
         $form = $crawler->filter("form[name=login]")->form([
-            "username" => "ychauvin",
+            "username" => "adminTodo",
             "password" => "Password123"
         ]);
 
@@ -38,7 +38,7 @@ class LoginTest extends WebTestCase
 
         //Form
         $form = $crawler->filter("form[name=login]")->form([
-            "username" => "ychauvin",
+            "username" => "adminTodo",
             "password" => "Password"
         ]);
 
