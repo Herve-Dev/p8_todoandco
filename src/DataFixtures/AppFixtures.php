@@ -9,6 +9,9 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AppFixtures extends Fixture
 {
     public function __construct(
@@ -24,7 +27,7 @@ class AppFixtures extends Fixture
         //admin
         $admin = new User();
         $admin
-            ->setUsername($faker->userName())
+            ->setUsername('adminTodo')
             ->setEmail($faker->email())
             ->setPassword($this->passwordEncoder->hashPassword($admin, 'Password123'))
             ->setRoles(['ROLE_ADMIN']);
@@ -35,7 +38,7 @@ class AppFixtures extends Fixture
         for ($i = 1; $i <= 4; $i++) { 
             $user = new User();
             $user
-                ->setUsername($faker->userName())
+                ->setUsername('user'. $i)
                 ->setEmail($faker->email())
                 ->setPassword($this->passwordEncoder->hashPassword($user, 'Password123'))
                 ->setRoles(['ROLE_USER']);
