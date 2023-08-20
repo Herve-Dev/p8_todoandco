@@ -2,8 +2,9 @@
 
 namespace App\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class LoginTest extends WebTestCase
 {
@@ -48,8 +49,23 @@ class LoginTest extends WebTestCase
         $client->followRedirect();
 
         $this->assertRouteSame('login');
-
         $this->assertSelectorTextContains("div.alert-danger", "Invalid credentials");
+
+    }
+
+    public function testLogoutUser(): void 
+    {
+        $client = static::createClient();
+        $urlGenerator = $client->getContainer()->get("router");
+        $crawler = $client->request('GET', $urlGenerator->generate('homepage'));
+        $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
+
+        $user = $entityManager->find(User::class, 1);
+        $client->loginUser($user);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+        $client->followRedirect();
+        $this->assertRouteSame('login');
 
     }
 }

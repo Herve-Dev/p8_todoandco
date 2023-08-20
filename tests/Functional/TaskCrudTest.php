@@ -105,4 +105,28 @@ class TaskCrudTest extends WebTestCase
 
         $this->assertRouteSame('task_list');
     }
+
+    public function testIfTaskToggle(): void
+    {
+        $client = static::createClient();
+        $urlGenerator = $client->getContainer()->get("router");
+        $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
+
+        $user = $entityManager->find(User::class, 1);
+        $task = $entityManager->getRepository(Task::class)->findOneBy([
+            'user' => $user
+        ]);
+
+        $client->loginUser($user);
+
+        $crawler = $client->request(
+            Request::METHOD_GET,
+            $urlGenerator->generate('task_toggle', ['id' => $task->getId()])
+        );
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
+        $client->followRedirect();
+
+        $this->assertRouteSame('task_list');
+    }
 }
