@@ -9,8 +9,7 @@ class BasicTest extends WebTestCase
     public function testSomething(): void
     {
         $client = static::createClient();
-
-        $crawler = $client->request('GET', '/');
+        $client->request('GET', '/');
 
         // Assurez-vous que la réponse est une redirection (statut 3xx)
         $this->assertTrue($client->getResponse()->isRedirect());

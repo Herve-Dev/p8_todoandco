@@ -57,7 +57,7 @@ class LoginTest extends WebTestCase
     {
         $client = static::createClient();
         $urlGenerator = $client->getContainer()->get("router");
-        $crawler = $client->request('GET', $urlGenerator->generate('homepage'));
+        $client->request('GET', $urlGenerator->generate('homepage'));
         $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
 
         $user = $entityManager->find(User::class, 1);

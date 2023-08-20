@@ -93,7 +93,7 @@ class TaskCrudTest extends WebTestCase
 
         $client->loginUser($user);
 
-        $crawler = $client->request(
+        $client->request(
             Request::METHOD_GET,
             $urlGenerator->generate('task_delete', ['id' => $task->getId()])
         );
@@ -119,7 +119,7 @@ class TaskCrudTest extends WebTestCase
 
         $client->loginUser($user);
 
-        $crawler = $client->request(
+        $client->request(
             Request::METHOD_GET,
             $urlGenerator->generate('task_toggle', ['id' => $task->getId()])
         );

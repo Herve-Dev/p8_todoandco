@@ -13,7 +13,6 @@ class EditRoleFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            //->add('username')
             ->add('roles', ChoiceType::class, [
                 'label' => 'Rôles :',
                 'label_attr' => [
@@ -30,7 +29,6 @@ class EditRoleFormType extends AbstractType
                 ],
                 
             ])
-            //->add('email')
         ;
     }
 
