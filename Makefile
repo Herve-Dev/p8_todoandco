@@ -6,4 +6,4 @@ tests:
 	php bin/console d:f:l --no-interaction --env=test
 	php bin/phpunit --testdox tests/Unit/
 	php bin/phpunit --testdox tests/Functional/
-	php bin/phpunit --coverage-html ./public/test-coverage
+	php bin/phpunit --coverage-html ./coverage
