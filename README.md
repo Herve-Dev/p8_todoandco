@@ -1,4 +1,7 @@
 # p8_ToDo_-_Co
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4719b430d14242b092057e33cf7acd69)](https://app.codacy.com/gh/Herve-Dev/p8_todoandco?utm_source=github.com&utm_medium=referral&utm_content=Herve-Dev/p8_todoandco&utm_campaign=Badge_Grade)
+
 Améliorez une application existante de ToDo &amp; Co
 
 ![Image toDo Co](https://github.com/Herve-Dev/p8_ToDo_-_Co/assets/82519929/c04fff58-dedf-44a2-b090-0dbfee5b2497)
