@@ -48,3 +48,6 @@ Seuls les utilisateurs ayant le rôle administrateur (ROLE_ADMIN) doivent pouvoi
 Les tâches ne peuvent être supprimées que par les utilisateurs ayant créé les tâches en question.
 
 Les tâches rattachées à l’utilisateur “anonyme” peuvent être supprimées uniquement par les utilisateurs ayant le rôle administrateur (ROLE_ADMIN).
+
+# Installation
+
