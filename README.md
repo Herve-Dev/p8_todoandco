@@ -52,7 +52,7 @@ Les tâches rattachées à l’utilisateur “anonyme” peuvent être supprimé
 # Installation
 1.  Faite un git clone du projet
 2.  Ouvrez votre terminal dans le projet et faite un `composer install`.
-3.  Créez votre un fichier .env.local et configurez votre base de données (Vous trouverez un exemple dans le fichier `.env`).
+3.  Créez votre un fichier `.env.local` et configurez votre base de données (Vous trouverez un exemple dans le fichier `.env`).
 4.  Ouvrez un nouveau terminal et taper `php bin/console doctrine:database:create`.
 5.  Taper egalement a la suite `php bin/console doctrine:migrations:migrate`.
 6.  Il faut ajouter les datafixtures avec cette ligne à la suite toujours dans le terminal `php bin/console doctrine:fixtures:load --no-interaction`.
@@ -60,5 +60,5 @@ Les tâches rattachées à l’utilisateur “anonyme” peuvent être supprimé
 8.  Vous êtes encore là ? c'est parfait le projet est installé avec succès !
 
 # Test Unit/Functional 
-1.  Créez votre un fichier .env.test.local et configurez votre base de données (Vous trouverez un exemple dans le fichier `.env.test`).
+1.  Créez votre un fichier `.env.test.local` et configurez votre base de données (Vous trouverez un exemple dans le fichier `.env.test`).
 2.  Il ya un MakeFile la commande est `make test` vous lancer cette commande dans votre terminal apres configuration du fichier .env.test.local
