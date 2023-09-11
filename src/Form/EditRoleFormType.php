@@ -26,8 +26,7 @@ class EditRoleFormType extends AbstractType
                 ],
                 'attr' => [
                     'class' => 'form-select' 
-                ],
-                
+                ], 
             ])
         ;
     }
